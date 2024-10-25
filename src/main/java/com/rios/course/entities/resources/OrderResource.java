@@ -13,7 +13,7 @@ import com.rios.course.entities.Order;
 import com.rios.course.services.OrderServices;
 
 @RestController
-@RequestMapping(value = "/order")
+@RequestMapping(value = "/orders")
 public class OrderResource {
 
 	@Autowired
