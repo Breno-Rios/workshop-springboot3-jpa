@@ -36,9 +36,10 @@ public class Order implements Serializable {
 	private Integer orderStatus;
 
 	@ManyToOne
-	@JoinColumn(name = "clientId")
+	@JoinColumn(name = "client_id")
 	private User client;
-
+	
+	
 	@OneToMany(mappedBy = "id.order")
 	private Set<OrderItem> items = new HashSet<>();
 
@@ -71,15 +72,6 @@ public class Order implements Serializable {
 		this.moment = moment;
 	}
 
-	public OrderStatus getOrderStatus() {
-		return OrderStatus.valueOf(orderStatus);
-	}
-
-	public void setOrderStatus(OrderStatus orderStatus) {
-		if (orderStatus != null) {
-			this.orderStatus = orderStatus.getCode();
-		}
-	}
 
 	public User getClient() {
 		return client;
@@ -87,6 +79,15 @@ public class Order implements Serializable {
 
 	public void setClient(User client) {
 		this.client = client;
+	}
+	public OrderStatus getOrderStatus() {
+		return OrderStatus.valueOf(orderStatus);
+	}
+	
+	public void setOrderStatus(OrderStatus orderStatus) {
+		if (orderStatus != null) {
+			this.orderStatus = orderStatus.getCode();
+		}
 	}
 
 	public Payment getPayment() {
@@ -97,19 +98,23 @@ public class Order implements Serializable {
 		this.payment = payment;
 	}
 
-	public Set<OrderItem> getOrderItems() {
+	public Set<OrderItem> getItems() {
 		return items;
 	}
 
-	@Override
-	public String toString() {
-		return "Order [id=" + id + ", moment=" + moment + ", client=" + client + "]";
+	public Double getTotal() {
+		double sum = 0;
+		for (OrderItem x : items) {
+			sum += x.getSubTotal();
+		}
+		return sum;
 	}
 
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
