@@ -3,15 +3,13 @@ package com.rios.course.entities.resources.exceptions;
 import java.io.Serializable;
 import java.time.Instant;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 public class StandardError implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd 't' HH:mm:ss 'Z",timezone = "GMT")
+//	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd 't' HH:mm:ss 'Z",timezone = "GMT")
 	private Instant timestemp;
-	private Integer Status;
+	private Integer status;
 	private String error;
 	private String message;
 	private String path;
@@ -24,7 +22,7 @@ public class StandardError implements Serializable {
 	public StandardError(Instant timestemp, Integer status, String error, String message, String path) {
 		super();
 		this.timestemp = timestemp;
-		Status = status;
+		this.status= status;
 		this.error = error;
 		this.message = message;
 		this.path = path;
@@ -40,11 +38,11 @@ public class StandardError implements Serializable {
 	}
 
 	public Integer getStatus() {
-		return Status;
+		return status;
 	}
 
 	public void setStatus(Integer status) {
-		Status = status;
+		this.status = status;
 	}
 
 	public String getError() {
