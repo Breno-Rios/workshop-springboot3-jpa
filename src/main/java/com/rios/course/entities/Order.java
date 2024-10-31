@@ -6,7 +6,6 @@ import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.rios.course.entities.enums.OrderStatus;
 
 import jakarta.persistence.CascadeType;
@@ -29,7 +28,6 @@ public class Order implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd 't' HH:mm:ss 'Z",timezone = "GMT")
 	private Instant moment;
 
 	private Integer orderStatus;
